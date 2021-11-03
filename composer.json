@@ -1,0 +1,29 @@
+{
+    "name": "yasapurnama/document-watermark",
+    "description": "Generate text watermark on PDF and Word documents with PHP",
+    "minimum-stability": "dev",
+    "type": "library",
+    "keywords": [
+        "watermark",
+        "text",
+        "pdf-watermark",
+        "word-watermark",
+        "php-watermark",
+        "markpdf"
+    ],
+    "require": {
+        "phpoffice/phpword": "^0.18.2"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Yasapurnama\\DocumentWatermark\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "I Putu Bagus Purnama Yasa",
+            "email": "yasapurnama@gmail.com"
+        }
+    ]
+}
