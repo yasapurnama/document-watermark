@@ -2,6 +2,9 @@
 
 namespace Yasapurnama\DocumentWatermark;
 
+use Yasapurnama\PhpShellRotation\Shell;
+use Yasapurnama\PhpShellRotation\Shell\System;
+
 class PDFWatermark extends Watermark
 {
     public function generate()
@@ -82,12 +85,9 @@ class PDFWatermark extends Watermark
 
     private function exec($cmd)
     {
-        if (!function_exists('exec'))
-            throw new \Exception('PHP exec function is disabled.');
+        $shell  = new Shell();
+        $output = $shell->exec($cmd);
 
-        $output = $returnCode = null;
-        exec($cmd, $output, $returnCode);
-
-        return $returnCode === 0;
+        return $shell->getStatus() === 0;
     }
 }
