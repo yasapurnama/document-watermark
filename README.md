@@ -11,7 +11,7 @@ Generate text watermark on PDF and Word documents
 
 ## Installation
 
-Install document-watermark with npm
+Install document-watermark via composer
 
 ```bash
   $ composer require yasapurnama/document-watermark
