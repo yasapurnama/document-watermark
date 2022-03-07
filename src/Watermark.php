@@ -14,19 +14,27 @@ abstract class Watermark
 
     protected $text;
 
-    protected $section   = 'footer';
+    protected $image;
 
-    protected $align     = 'right';
+    protected $opacity   = 1.0;
+
+    protected $section   = 'header';
+
+    protected $align     = 'left';
+
+    protected $x         = 30;
+
+    protected $y         = 25;
 
     protected $fontSize  = 10;
 
     protected $fontColor = '000000';
 
+    protected $onlyFirstPage = false;
+
     function __construct(string $documentPath)
     {
         $this->documentPath = $documentPath;
-
-        $this->setDefault();
     }
 
     public function setDefault()
@@ -38,9 +46,32 @@ abstract class Watermark
             mkdir($this->outputDir, 0755, true);
     }
 
+    public function outputFile(string $outputFile)
+    {
+        $this->outputFile = $outputFile;
+
+        return $this;
+    }
+
     public function setText(string $text)
     {
         $this->text = $text;
+        $this->image = null;
+
+        return $this;
+    }
+
+    public function setImage(string $image)
+    {
+        $this->image = $image;
+        $this->text = null;
+
+        return $this;
+    }
+
+    public function opacity(float $opacity)
+    {
+        $this->opacity = $opacity;
 
         return $this;
     }
@@ -59,16 +90,20 @@ abstract class Watermark
         return $this;
     }
 
-    public function alignLeft()
+    public function alignLeft(int $x = null, int $y = null)
     {
         $this->align = 'left';
+        if ($x) $this->x = $x;
+        if ($y) $this->y = $y;
 
         return $this;
     }
 
-    public function alignRight()
+    public function alignRight(int $x = null, int $y = null)
     {
         $this->align = 'right';
+        if ($x) $this->x = $x;
+        if ($y) $this->y = $y;
 
         return $this;
     }
@@ -97,6 +132,12 @@ abstract class Watermark
         return $this;
     }
 
-    abstract public function generate();
+    public function onlyFirstPage()
+    {
+        $this->onlyFirstPage = true;
 
+        return $this;
+    }
+
+    abstract public function generate();
 }
