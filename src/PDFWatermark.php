@@ -92,7 +92,6 @@ class PDFWatermark extends Watermark
     private function getCommand()
     {
         if (!$this->outputFile) {
-            $this->setDefault();
             $this->outputFile = $this->outputDir . '/' . $this->fileName;
         }
 

@@ -35,15 +35,8 @@ abstract class Watermark
     function __construct(string $documentPath)
     {
         $this->documentPath = $documentPath;
-    }
-
-    public function setDefault()
-    {
-        $this->fileName  = basename($this->documentPath);
-        $this->outputDir = dirname($this->documentPath) . '/watermark';
-
-        if (!is_dir($this->outputDir))
-            mkdir($this->outputDir, 0755, true);
+        $this->fileName     = basename($this->documentPath);
+        $this->outputDir    = dirname($this->documentPath);
     }
 
     public function outputFile(string $outputFile)

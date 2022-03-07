@@ -21,6 +21,7 @@ Install document-watermark via composer
 Generate word document watermark. Using default section `footer`, text align `right`, font color `000000` and font size `10` 
 ```php
 $wordWatermark = WatermarkFactory::load(__DIR__ . '/files/word-sample.docx')
+                            ->subDirectory('watermark')
                             ->setText('Last update on ' . date('m/d/Y'))
                             ->generate();
 ```
@@ -29,7 +30,7 @@ $wordWatermark = WatermarkFactory::load(__DIR__ . '/files/word-sample.docx')
 Generate PDF watermark with custom options
 ```php
 $pdfWatermark  = WatermarkFactory::load(__DIR__ . '/files/pdf-sample.pdf')
-                            ->subDirectory('sub-dir')
+                            ->subDirectory('watermark')
                             ->setText('Last update on ' . date('m/d/Y'))
                             ->sectionHeader()
                             ->alignRight()
@@ -46,26 +47,24 @@ Generate word document watermark using image at footer, with page margins x=1 y=
 
 ```php
 $wordWatermark = WatermarkFactory::load(__DIR__ . '/files/word-sample.docx')
-                            ->outputFile(__DIR__ . '/files/watermark/word-sample.docx')
+                            ->outputFile(__DIR__ . '/files/watermark/word-image-stamp-custom.docx')
                             ->setImage(__DIR__ . '/files/stamp.png')
                             ->sectionFooter(1, 1)
                             ->alignRight()
                             ->onlyFirstPage()
                             ->generate();
 ```
+![example-word-image-stamp](https://user-images.githubusercontent.com/12730759/157050800-04308e49-e981-4a1d-aaea-fd42ae033584.png)
 
 Generate pdf document watermark using image with default values
 
 ```php
 $pdfWatermark  = WatermarkFactory::load(__DIR__ . '/files/pdf-sample.pdf')
-    ->outputFile(__DIR__ . '/files/watermark/sub-dir/pdf-sample.pdf')
+    ->outputFile(__DIR__ . '/files/watermark/pdf-image-stamp.pdf')
     ->setImage(__DIR__ . '/files/stamp.png')
     ->generate();
 ```
-
-
-
-
+![example-pdf-image-stamp](https://user-images.githubusercontent.com/12730759/157051029-83e69c08-f8e7-4d48-b8f8-0e1097bc1c8f.png)
 
 
 ## Contribute

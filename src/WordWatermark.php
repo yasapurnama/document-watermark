@@ -19,7 +19,7 @@ class WordWatermark extends Watermark
                 $this->image,
                 array_merge(
                     array(
-                        'wrappingStyle' => Image::WRAPPING_STYLE_BEHIND,
+                        'wrappingStyle'    => Image::WRAPPING_STYLE_BEHIND,
                         'positioning'      => Image::POSITION_ABSOLUTE,
                         'posHorizontalRel' => Image::POSITION_RELATIVE_TO_PAGE,
                         'posVerticalRel'   => Image::POSITION_RELATIVE_TO_PAGE,
@@ -38,10 +38,10 @@ class WordWatermark extends Watermark
         }
 
         if (!$this->outputFile) {
-            $this->setDefault();
             $this->outputFile = $this->outputDir . '/' . $this->fileName;
         }
-        $output           = $phpWord->save($this->outputFile, 'Word2007');
+
+        $output = $phpWord->save($this->outputFile, 'Word2007');
 
         if (!$output || !file_exists($this->outputFile))
             $this->outputFile = '';
@@ -57,12 +57,14 @@ class WordWatermark extends Watermark
         if ($this->section == 'header') {
             return $section->addHeader($this->getFirstPageOption());
         }
+
         return $section->addFooter($this->getFirstPageOption());
     }
 
     private function getFirstPageOption()
     {
         if ($this->onlyFirstPage) return Footer::FIRST;
+
         return Footer::AUTO;
     }
 
