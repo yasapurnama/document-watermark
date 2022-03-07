@@ -23,6 +23,11 @@ class PDFWatermark extends Watermark
         return '-s ' . $this->fontSize;
     }
 
+    private function getOpacityOption()
+    {
+        return '-o ' . $this->opacity;
+    }
+
     private function getFontColorOption()
     {
         return '-l ' . $this->fontColor;
@@ -39,17 +44,33 @@ class PDFWatermark extends Watermark
     private function getHeaderPosition($align)
     {
         if ($align == 'left')
-            return '-x 40 -y 30';
+            return sprintf(
+                '-x %s -y %s',
+                $this->x,
+                $this->y,
+            );
 
-        return '-x -40 -y 30';
+        return sprintf(
+            '-x -%s -y %s',
+            $this->x,
+            $this->y
+        );
     }
 
     private function getFooterPosition($align)
     {
         if ($align == 'left')
-            return '-x 40 -y -30';
+            return sprintf(
+                '-x %s -y -%s',
+                $this->x,
+                $this->y,
+            );
 
-        return '-x -40 -y -30';
+        return sprintf(
+            '-x -%s -y -%s',
+            $this->x,
+            $this->y
+        );
     }
 
     private function getBinExecutable()
@@ -70,17 +91,33 @@ class PDFWatermark extends Watermark
 
     private function getCommand()
     {
-        $this->outputFile = $this->outputDir . '/' . $this->fileName;
+        if (!$this->outputFile) {
+            $this->setDefault();
+            $this->outputFile = $this->outputDir . '/' . $this->fileName;
+        }
 
-        return sprintf('%s %s "%s" %s %s %s %s',
+        if ($this->image) {
+            return sprintf(
+                '%s %s %s %s %s %s',
                 $this->getBinExecutable(),
                 $this->documentPath,
-                $this->text,
+                $this->image,
                 $this->outputFile,
-                $this->getFontColorOption(),
-                $this->getFontSizeOption(),
-                $this->getPositionOption()
+                $this->getPositionOption(),
+                $this->getOpacityOption()
             );
+        }
+
+        return sprintf(
+            '%s %s "%s" %s %s %s %s',
+            $this->getBinExecutable(),
+            $this->documentPath,
+            $this->text,
+            $this->outputFile,
+            $this->getFontColorOption(),
+            $this->getFontSizeOption(),
+            $this->getPositionOption()
+        );
     }
 
     private function exec($cmd)

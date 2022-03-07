@@ -17,3 +17,30 @@ $pdfWatermark  = WatermarkFactory::load(__DIR__ . '/files/pdf-sample.pdf')
                             ->fontColor('ff0000')
                             ->generate();
 
+$pdfWatermark  = WatermarkFactory::load(__DIR__ . '/files/pdf-sample.pdf')
+    ->outputFile(__DIR__ . '/files/watermark/sub-dir/pdf-sample.pdf')
+    ->setImage(__DIR__ . '/files/stamp.png')
+    ->generate();
+
+$pdfWatermark  = WatermarkFactory::load(__DIR__ . '/files/pdf-sample.pdf')
+    ->outputFile(__DIR__ . '/files/watermark/sub-dir/pdf-sample.pdf')
+    ->setImage(__DIR__ . '/files/stamp.png')
+    ->sectionFooter(5, 5)
+    ->alignRight()
+    ->opacity(0.1)
+    ->generate();
+
+$wordWatermark = WatermarkFactory::load(__DIR__ . '/files/word-sample.docx')
+    ->outputFile(__DIR__ . '/files/watermark/word-sample.docx')
+    ->setImage(__DIR__ . '/files/stamp.png')
+    ->generate();
+
+$wordWatermark = WatermarkFactory::load(__DIR__ . '/files/word-sample.docx')
+    ->outputFile(__DIR__ . '/files/watermark/word-sample.docx')
+    ->setImage(__DIR__ . '/files/stamp.png')
+    ->sectionFooter(1, 1)
+    ->alignRight()
+    ->onlyFirstPage()
+    ->generate();
+
+

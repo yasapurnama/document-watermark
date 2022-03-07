@@ -39,6 +39,35 @@ $pdfWatermark  = WatermarkFactory::load(__DIR__ . '/files/pdf-sample.pdf')
 ```
 ![example-pdf-watermark](https://user-images.githubusercontent.com/12730759/151197877-e94c4087-cf92-4dad-beab-a7951cf42ca3.png)
 
+
+### Image watermark
+
+Generate word document watermark using image at footer, with page margins x=1 y=1, align right, only in first page
+
+```php
+$wordWatermark = WatermarkFactory::load(__DIR__ . '/files/word-sample.docx')
+                            ->outputFile(__DIR__ . '/files/watermark/word-sample.docx')
+                            ->setImage(__DIR__ . '/files/stamp.png')
+                            ->sectionFooter(1, 1)
+                            ->alignRight()
+                            ->onlyFirstPage()
+                            ->generate();
+```
+
+Generate pdf document watermark using image with default values
+
+```php
+$pdfWatermark  = WatermarkFactory::load(__DIR__ . '/files/pdf-sample.pdf')
+    ->outputFile(__DIR__ . '/files/watermark/sub-dir/pdf-sample.pdf')
+    ->setImage(__DIR__ . '/files/stamp.png')
+    ->generate();
+```
+
+
+
+
+
+
 ## Contribute
 Just submit pull request, your contributions are always welcomed!
 ## Credits
