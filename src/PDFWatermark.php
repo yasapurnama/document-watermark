@@ -98,21 +98,21 @@ class PDFWatermark extends Watermark
         if ($this->image) {
             return sprintf(
                 '%s %s %s %s %s %s',
-                $this->getBinExecutable(),
-                $this->documentPath,
-                $this->image,
-                $this->outputFile,
+                escapeshellarg($this->getBinExecutable()),
+                escapeshellarg($this->documentPath),
+                escapeshellarg($this->image),
+                escapeshellarg($this->outputFile),
                 $this->getPositionOption(),
                 $this->getOpacityOption()
             );
         }
 
         return sprintf(
-            '%s %s "%s" %s %s %s %s',
-            $this->getBinExecutable(),
-            $this->documentPath,
-            $this->text,
-            $this->outputFile,
+            '%s %s %s %s %s %s %s',
+            escapeshellarg($this->getBinExecutable()),
+            escapeshellarg($this->documentPath),
+            escapeshellarg($this->text),
+            escapeshellarg($this->outputFile),
             $this->getFontColorOption(),
             $this->getFontSizeOption(),
             $this->getPositionOption()
