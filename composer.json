@@ -12,7 +12,7 @@
         "markpdf"
     ],
     "require": {
-        "phpoffice/phpword": "^0.18.2",
+        "phpoffice/phpword": "^1.1.0",
         "yasapurnama/php-shellrotation": "^1.0"
     },
     "license": "MIT",
