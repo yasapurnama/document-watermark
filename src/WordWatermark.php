@@ -75,30 +75,30 @@ class WordWatermark extends Watermark
                 return array(
                     'posVertical'    => Image::POSITION_VERTICAL_TOP,
                     'posHorizontal'    => Image::POSITION_HORIZONTAL_LEFT,
-                    'wrapDistanceTop' => $this->y,
-                    'wrapDistanceLeft' => $this->x
+                    'wrapDistanceTop' => $this->y * 72 / 25.4,
+                    'wrapDistanceLeft' => $this->x * 72 / 25.4
                 );
             }
             return array(
                 'posVertical'    => Image::POSITION_VERTICAL_TOP,
                 'posHorizontal'    => Image::POSITION_HORIZONTAL_RIGHT,
-                'wrapDistanceTop' => $this->y,
-                'wrapDistanceRight' => $this->x
+                'wrapDistanceTop' => $this->y * 72 / 25.4,
+                'wrapDistanceRight' => $this->x * 72 / 25.4
             );
         }
         if ($this->align == 'left') {
             return array(
                 'posVertical'    => Image::POSITION_VERTICAL_BOTTOM,
                 'posHorizontal'    => Image::POSITION_HORIZONTAL_LEFT,
-                'wrapDistanceBottom' => $this->y,
-                'wrapDistanceLeft' => $this->x
+                'wrapDistanceBottom' => $this->y * 72 / 25.4,
+                'wrapDistanceLeft' => $this->x * 72 / 25.4
             );
         }
         return array(
             'posVertical'    => Image::POSITION_VERTICAL_BOTTOM,
             'posHorizontal'    => Image::POSITION_HORIZONTAL_RIGHT,
-            'wrapDistanceRight' => $this->x,
-            'wrapDistanceBottom' => $this->y
+            'wrapDistanceRight' => $this->x * 72 / 25.4,
+            'wrapDistanceBottom' => $this->y * 72 / 25.4
         );
     }
 }

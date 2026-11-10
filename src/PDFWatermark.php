@@ -33,6 +33,11 @@ class PDFWatermark extends Watermark
         return '-l ' . $this->fontColor;
     }
 
+    private function getFirstPageOption()
+    {
+        if ($this->onlyFirstPage) return '-F ';
+    }
+
     private function getPositionOption()
     {
         if ($this->section == 'header')
@@ -97,25 +102,27 @@ class PDFWatermark extends Watermark
 
         if ($this->image) {
             return sprintf(
-                '%s %s %s %s %s %s',
+                '%s %s %s %s %s %s %s',
                 $this->getBinExecutable(),
                 $this->documentPath,
                 $this->image,
                 $this->outputFile,
                 $this->getPositionOption(),
-                $this->getOpacityOption()
+                $this->getOpacityOption(),
+                $this->getFirstPageOption()
             );
         }
 
         return sprintf(
-            '%s %s "%s" %s %s %s %s',
+            '%s %s "%s" %s %s %s %s %s',
             $this->getBinExecutable(),
             $this->documentPath,
             $this->text,
             $this->outputFile,
             $this->getFontColorOption(),
             $this->getFontSizeOption(),
-            $this->getPositionOption()
+            $this->getPositionOption(),
+            $this->getFirstPageOption()
         );
     }
 

@@ -86,8 +86,8 @@ abstract class Watermark
     public function alignLeft(int $x = null, int $y = null)
     {
         $this->align = 'left';
-        if ($x) $this->x = $x;
-        if ($y) $this->y = $y;
+        if ($x !== null) $this->x = $x;
+        if ($y !== null) $this->y = $y;
 
         return $this;
     }
@@ -95,8 +95,8 @@ abstract class Watermark
     public function alignRight(int $x = null, int $y = null)
     {
         $this->align = 'right';
-        if ($x) $this->x = $x;
-        if ($y) $this->y = $y;
+        if ($x !== null) $this->x = $x;
+        if ($y !== null) $this->y = $y;
 
         return $this;
     }

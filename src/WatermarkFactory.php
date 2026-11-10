@@ -6,6 +6,7 @@ class WatermarkFactory
 {
     protected static $mime = [
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'WordWatermark',
+        'application/vnd.oasis.opendocument.text'                                 => 'OdtWatermark',
         'application/pdf'                                                         => 'PDFWatermark'
     ];
 
